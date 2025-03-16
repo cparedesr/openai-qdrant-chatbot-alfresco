@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+gradio
+openai
+python-decouple
+qdrant-client
+gTTS
+requests
