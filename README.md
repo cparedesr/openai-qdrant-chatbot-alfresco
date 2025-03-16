@@ -1,4 +1,4 @@
-# Proyecto openai-qdrant-chatbot-alfresco 🚀
+# openai-qdrant-chatbot-alfresco 🚀
 
 ¡Bienvenido al proyecto Alfresco Vector Embeddings! Aquí integramos Alfresco Community 23.4.1 con Java 17 junto a un servicio Python que indexa vectores embeddings en Qdrant.⚡
 
