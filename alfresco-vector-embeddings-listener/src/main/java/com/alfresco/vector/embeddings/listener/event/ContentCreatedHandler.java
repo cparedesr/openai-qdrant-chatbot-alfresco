@@ -65,7 +65,7 @@ public class ContentCreatedHandler implements OnNodeCreatedEventHandler {
             String extractedText = stripper.getText(pdfDoc);
             LOG.debug("Texto extraído ({} caracteres): {}", extractedText.length(), extractedText);
 
-            pythonApiService.indexText(nodeId, extractedText);
+            pythonApiService.indexVectorEmbeddings(nodeId, extractedText);
             LOG.info("Documento {} indexado correctamente en Python", nodeId);
 
         } catch (IOException e) {
