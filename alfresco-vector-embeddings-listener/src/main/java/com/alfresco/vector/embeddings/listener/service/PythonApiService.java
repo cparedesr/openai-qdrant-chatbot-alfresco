@@ -3,6 +3,7 @@ package com.alfresco.vector.embeddings.listener.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +24,7 @@ public class PythonApiService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public void indexText(String nodeId, String text) {
+    public void indexVectorEmbeddings(String nodeId, String text) {
 
         String url = String.format("http://%s:%d/index", pythonApiHost, pythonApiPort);
 
@@ -36,6 +37,21 @@ public class PythonApiService {
             LOGGER.info("Respuesta de la API de Python: {}", response.getBody());
         } catch (Exception e) {
             LOGGER.error("Error al llamar a la API de Python en {}: {}", url, e.getMessage());
+        }
+    }
+
+    public void deleteVectorEmbeddings(String nodeId) {
+
+        String url = String.format("http://%s:%d/index/%s", pythonApiHost, pythonApiPort, nodeId);
+
+        try {
+
+            ResponseEntity<String> response = restTemplate.exchange(
+                    url, HttpMethod.DELETE, null, String.class
+            );
+            LOGGER.info("Respuesta de Python (delete): {}", response.getBody());
+        } catch (Exception e) {
+            LOGGER.error("Error al llamar a la API de Python (delete) en {}: {}", url, e.getMessage());
         }
     }
 }
